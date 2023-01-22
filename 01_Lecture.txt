@@ -1,0 +1,954 @@
+ANLY-555: Python Primer
+
+Outline
+
+I.
+
+Topics
+
+I.
+Python
+II. Objects
+III. Basic Operations
+IV. Control Flow
+V.
+VI. Aliasing, Deep + Shallow Copies
+VII.
+VIII. Exceptions
+IX. More … 
+
+Functions
+
+i/o
+
+I. Goals
+
+I.
+II.
+
+Basic Python Syntax
+Basic Algorithm / Function Design
+
+II.
+
+In-Class Exercise
+
+I.
+
+Game Show Simulation!
+
+III. Coding Examples
+
+I.
+II.
+III.
+
+Tic-tac-toe simulation
+Factorial
+Fibonacci 
+
+The Python Interpreter
+
+• Python is an interpreted language. 
+• Commands are executed through the Python interpreter. 
+
+– The interpreter receives a command, evaluates that command, and 
+
+reports the result of the command. 
+
+• A programmer defines a series of commands in advance 
+and saves those commands in a text file known as source 
+code or a script. 
+
+• For Python, source code is conventionally stored in a file 
+
+named with the .py suffix (e.g., demo.py).
+
+3
+
+An Example Program
+
+4
+
+Identifiers, Objects, and the Assignment Statement
+
+• The most important of all Python commands is an 
+
+assignment statement:
+temperature = 98.6
+
+– This command establishes temperature as an identifier 
+(also known as a name), and then associates it with the 
+object expressed on the right-hand side of the equal 
+sign, in this case a floating-point object with value 98.6.
+
+5
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Objects in Python
+
+• Python is an object-oriented language and classes form the basis for all 
+
+data types.
+
+• Python’s built-in classes:
+– the int class for integers, 
+– the float class for floating-point values, 
+– the str class for character strings.
+
+6 © 2013 Goodrich, Tamassia, 
+
+Goldwasser
+
+Python Primer
+
+Identifiers
+
+•
+
+•
+
+Identifiers in Python are case-sensitive, so temperature 
+and Temperature are distinct names. 
+Identifiers can be composed of almost any combination of 
+letters, numerals, and underscore characters. 
+
+• An identifier cannot begin with a numeral and that there 
+
+are 33 specially reserved words that cannot be used as 
+identifiers:
+
+7
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Types
+
+• Python is a dynamically typed language, as there is no 
+
+advance declaration associating an identifier with a 
+particular data type. 
+
+• An identifier can be associated with any type of object, 
+and it can later be reassigned to another object of the 
+same (or different) type. 
+
+• Although an identifier has no declared type, the object to 
+which it refers has a definite type. In our first example, the 
+characters 98.6 are recognized as a floating-point literal, 
+and thus the identifier temperature is associated with an 
+instance of the float class having that value.
+
+8
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Objects
+
+•
+
+•
+
+•
+
+The process of creating a new instance of a class is known as 
+instantiation. 
+To instantiate an object we usually invoke the constructor of a class:
+w = Widget()
+– This is assuming that the constructor does not require any parameters. 
+If the constructor does require parameters, we might use a syntax 
+such as
+w = Widget(a, b, c)
+
+• Many of Python’s built-in classes a literal form for designating new 
+
+instances. For example, the command
+temperature = 98.6 
+
+results in the creation of a new instance of the float class.
+
+9
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Calling Methods
+
+• Python supports functions a syntax such as sorted(data), 
+
+in which case data is a parameter sent to the function.
+• Python’s classes may also define one or more methods 
+
+(also known as member functions), which are invoked on 
+a specific instance of a class using the dot (“.”) operator. 
+
+• For example, Python’s list class has a method named sort 
+
+that can be invoked with a syntax such as data.sort( ). 
+– This particular method rearranges the contents of the list so that 
+
+they are sorted.
+
+10
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Built-In Classes
+
+• A class is immutable if each object of that class 
+has a fixed value upon instantiation that cannot 
+subsequently be changed. For example, the float
+class is immutable.
+
+11
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The bool Class
+
+❑ The bool class is used for logical (Boolean) values, and the 
+
+only two instances of that class are expressed as the 
+literals:
+
+True     and     False 
+
+❑ The default constructor, bool( ), returns False. 
+❑ Python allows the creation of a Boolean value from a 
+
+nonboolean type using the syntax bool(foo) for value foo. 
+The interpretation depends upon the type of the 
+parameter. 
+◼ Numbers evaluate to False if zero, and True if nonzero. 
+◼ Sequences and other container types, such as strings and lists, 
+
+evaluate to False if empty and True if nonempty.
+
+12
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The int Class
+
+• The int class is designed to represent integer values with 
+
+arbitrary magnitude. 
+– Python automatically chooses the internal representation for an 
+
+integer based upon the magnitude of its value.
+
+• The integer constructor, int( ), returns 0 by default. 
+• This constructor can also construct an integer value based 
+
+upon an existing value of another type. 
+– For example, if f represents a floating-point value, the syntax int(f) 
+
+produces the truncated value of f. For example, int(3.14) produces the 
+value 3, while int(−3.9) produces the value −3. 
+
+– The constructor can also be used to parse a string that represents an 
+
+integer. For example, the expression int( 137 ) produces the integer 
+value 137.
+
+13
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The float Class
+
+• The float class is the floating-point type in Python.
+
+– The floating-point equivalent of an integral number, 2, can be 
+
+expressed directly as 2.0. 
+
+– One other form of literal for floating-point values uses scientific 
+
+notation. For example, the literal 6.022e23 represents the 
+mathematical value 6.022×1023.
+
+• The constructor float( ) returns 0.0. 
+• When given a parameter, the constructor, float, returns the 
+
+equivalent floating-point value. 
+– float(2) returns the floating-point value 2.0
+– float(‘3.14’) returns 3.14
+
+14
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The list Class
+
+• A list instance stores a sequence of objects, that is, a sequence of 
+
+•
+
+•
+
+•
+
+references (or pointers) to objects in the list.
+Elements of a list may be arbitrary objects (including the None 
+object). 
+Lists are array-based sequences and a list of length n has elements 
+indexed from 0 to n−1 inclusive. 
+Lists have the ability to dynamically expand and contract their 
+capacities as needed. 
+
+• Python uses the characters [ ] as delimiters for a list literal.
+
+– [ ] is an empty list. 
+– [‘red’, ‘green’, ‘blue’] is a list containing three string instances. 
+The list( ) constructor produces an empty list by default. 
+The list constructor will accept any iterable parameter. 
+– list(‘hello’) produces a list of individual characters, [‘h’, ‘e’, ‘l’, ‘l’, ‘o’].
+
+•
+
+•
+
+15
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The tuple Class
+
+• The tuple class provides an immutable 
+
+(unchangeable) version of a sequence, which 
+allows instances to have an internal representation 
+that may be more streamlined than that of a list. 
+Parentheses delimit a tuple.
+– The empty tuple is ()
+
+• To express a tuple of length one as a literal, a 
+comma must be placed after the element, but 
+within the parentheses. 
+– For example, (17,) is a one-element tuple.
+
+16
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The str Class
+
+• String literals can be enclosed in single quotes, as 
+
+in ‘hello’, or double quotes, as in "hello".
+
+• A string can also begin and end with three single 
+
+or double quotes, if it contains newlines in it.
+
+17
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+The set Class
+
+• Python’s set class represents a set, namely a collection of 
+
+elements, without duplicates, and without an inherent order 
+to those elements.
+
+• Only instances of immutable types can be added to a Python 
+
+set. Therefore, objects such as integers, floating-point 
+numbers, and character strings are eligible to be elements of 
+a set. 
+– The frozenset class is an immutable form of the set type, itself.
+
+• Python uses curly braces { and } as delimiters for a set
+
+– For example, as {17} or {‘red’, ‘green’, ‘blue’}
+– The exception to this rule is that { } does not represent an empty set. 
+
+Instead, the constructor set( ) returns an empty set.
+
+18
+
+Python Primer
+
+The dict Class
+
+• Python’s dict class represents a dictionary, or mapping, from 
+
+a set of distinct keys to associated values.
+
+• Python implements a dict using an almost identical 
+
+approach to that of a set, but with storage of the associated 
+values.
+– The literal form { } produces an empty dictionary.
+
+• A nonempty dictionary is expressed using a comma-
+separated series of key:value pairs. For example, the 
+dictionary {‘ga’ : ‘Irish’, ‘de’ : ‘German’} maps ‘ga’ to ‘Irish’
+and ‘de’ to ‘German’.
+
+• Alternatively, the constructor accepts a sequence of key-
+
+value pairs as a parameter, as in dict(pairs) with pairs = [(‘ga’, 
+‘Irish’), (‘de’, ‘German’)].
+
+19
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Expressions and Operators
+
+• Existing values can be combined into expressions 
+
+using special symbols and keywords known as 
+operators. 
+
+• The semantics of an operator depends upon the 
+
+type of its operands. 
+
+• For example, when a and b are numbers, the 
+
+syntax a + b indicates addition, while if a and b are 
+strings, the operator + indicates concatenation.
+
+20
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Logical Operators
+
+• Python supports the following keyword operators 
+
+for Boolean values:
+
+• The and and or operators short-circuit, in that 
+they do not evaluate the second operand if the 
+result can be determined based on the value of 
+the first operand.
+
+21
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Equality Operators
+
+• Python supports the following operators to test 
+
+two notions of equality:
+
+• The expression, a is b, evaluates to True, precisely 
+when identifiers a and b are aliases for the same 
+object. 
+
+• The expression a == b tests a more general notion 
+
+of equivalence.
+
+22
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Comparison Operators
+
+• Data types may define a natural order via the 
+
+following operators:
+
+• These operators have expected behavior for 
+
+numeric types, and are defined lexicographically, 
+and case-sensitively, for strings.
+
+23
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Arithmetic Operators
+
+• Python supports the following arithmetic operators:
+
+• For addition, subtraction, and multiplication, if both operands 
+
+have type int, then the result is an int; if one or both 
+operands have type float, the result is a float.
+
+• True division is always of type float, integer division is always 
+
+int (with the result truncated)
+
+24
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Bitwise Operators
+
+• Python provides the following bitwise operators 
+
+for integers:
+
+25
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Sequence Operators
+
+• Each of Python’s built-in sequence types (str, tuple, 
+
+and list) support the following operator syntaxes:
+
+26
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Sequence Comparisons
+
+• Sequences define comparison operations based on 
+
+lexicographic order, performing an element by 
+element comparison until the first difference is 
+found. 
+– For example, [5, 6, 9] < [5, 7] because of the entries at 
+
+index 1.
+
+27
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Operators for Sets
+
+• Sets and frozensets support the following 
+
+operators:
+
+28
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Operators for Dictionaries
+
+• The supported operators for objects of type dict are as follows:
+
+29
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Operator Precedence
+
+30
+
+© 2013 Goodrich, Tamassia, 
+Goldwasser
+
+Python Primer
+
+Program Structure
+
+• Common to all control structures, the colon character is 
+
+•
+
+used to delimit the beginning of a block of code that acts as 
+a body for a control structure. 
+If the body can be stated as a single executable statement, 
+it can technically placed on the same line, to the right of 
+the colon. 
+
+• However, a body is more typically typeset as an indented 
+
+block starting on the line following the colon. 
+
+• Python relies on the indentation level to designate the 
+
+extent of that block of code, or any nested blocks of code 
+within.
+
+Conditionals
+
+Loops
+
+• While loop:
+
+• For loop:
+
+• Indexed For loop:
+
+Break and Continue
+
+❑ Python supports a break statement that immediately 
+
+terminate a while or for loop when executed within 
+its body.
+
+❑ Python also supports a continue statement that 
+
+causes the current iteration of a loop body to stop, 
+but with subsequent passes of the loop proceeding as 
+expected.
+
+Functions
+
+• Functions are defined using the keyword def.
+
+• This establishes a new identifier as the name of the 
+
+function (count, in this example), and it establishes the 
+number of parameters that it expects, which defines the 
+function’s signature.
+
+• The return statement returns the value for this function 
+
+and terminates its processing.
+
+Information Passing
+
+❑ Parameter passing in Python follows the semantics of the 
+
+standard assignment statement.
+
+❑ For example
+
+is the same as
+
+and results in
+
+Some Memory Basics
+
+• During the execution of specific programming language operations, data is 
+
+allocated to memory address locations.
+
+• It is VERY important to understand when and how this allocation is 
+
+performed!
+• Operations:
+
+– Assignment operations
+– Parameter passing
+– Return statements 
+– Explicit copies 
+
+• Key concepts:
+
+– Aliasing vs Shallow Copy vs Deep Copy
+
+Aliasing vs Shallow Copy vs Deep Copy
+
+• Consider a list which contains two colormap structures, and we perform 
+
+an assignment.
+palette = warmtones
+
+• Aliasing – simply another name for the same object.
+
+Shallow Copy and Deep Copy
+
+• From copy module.
+
+• Shallow copy makes a copy 
+
+of the initial structure
+palette = 
+copy.copy(warmtones)
+
+• Deep copy recursively 
+copies all referenced 
+constituent structures.
+palette = 
+copy.deepcopy(warmtones)
+
+Why is understanding memory management 
+
+important?
+
+• Parameter passing
+
+– Side effects and referential transparency
+
+• Designing and using data structures and objects
+
+– WARNING:  Not all Python objects are allocated or copied the same way!!!!!
+– See example code provided. 
+
+Simple Output
+
+• The built-in function, print, is used to generate 
+
+standard output to the console.
+
+• In its simplest form, it prints an arbitrary 
+
+sequence of arguments, separated by spaces, and 
+followed by a trailing newline character.
+
+• For example, the command print(‘maroon’, 5) 
+
+outputs the string ‘maroon 5\n’.
+
+• A nonstring argument x will be displayed as str(x).
+
+Simple Input
+
+• The primary means for acquiring information from the 
+
+user console is a built-in function named input. 
+
+• This function displays a prompt, if given as an optional 
+parameter, and then waits until the user enters some 
+sequence of characters followed by the return key. 
+
+• The return value of the function is the string of characters 
+
+that were entered strictly before the return key.
+– Such a string can immediately be converted, of course:
+
+A Simple Program
+
+• Here is a simple program that does some input 
+
+and output:
+
+Files
+
+• Files are opened with a built-in function, open, that 
+
+returns an object for the underlying file.
+
+• For example, the command, fp = open(‘sample.txt’), 
+
+attempts to open a file named sample.txt.
+
+• Methods for files:
+
+Exception Handling
+
+• Exceptions are unexpected events that occur during the 
+
+execution of a program.
+
+• An exception might result from a logical error or an 
+
+•
+
+unanticipated situation. 
+In Python, exceptions (also known as errors) are objects that 
+are raised (or thrown) by code that encounters an unexpected 
+circumstance. 
+– The Python interpreter can also raise an exception. 
+
+• A raised error may be caught by a surrounding context that 
+
+“handles” the exception in an appropriate fashion. If uncaught, 
+an exception causes the interpreter to stop executing the 
+program and to report an appropriate message to the console.
+
+Common Exceptions
+
+• Python includes a rich hierarchy of exception classes that 
+
+designate various categories of errors
+
+Raising an Exception
+
+• An exception is thrown by executing the raise 
+statement, with an appropriate instance of an 
+exception class as an argument that designates 
+the problem. 
+
+• For example, if a function for computing a square 
+root is sent a negative value as a parameter, it can 
+raise an exception with the command:
+
+Catching an Exception
+
+•
+
+In Python, exceptions can be tested and caught using a try-except 
+control structure.
+
+In this structure, the “try” block is the primary code to be executed. 
+
+•
+• Although it is a single command in this example, it can more generally 
+
+•
+
+be a larger block of indented code. 
+Following the try-block are one or more “except” cases, each with an 
+identified error type and an indented block of code that should be 
+executed if the designated error is raised within the try-block.
+
+Iterators
+
+• Basic container types, such as list, tuple, and set, qualify as 
+iterable types, which allows them to be used as an iterable 
+object in a for loop.
+
+• An iterator is an object that manages an iteration through 
+
+a series of values. If variable, i, identifies an iterator 
+object, then each call to the built-in function, next(i), 
+produces a subsequent element from the underlying 
+series, with a StopIteration exception raised to indicate 
+that there are no further elements.
+
+• An iterable is an object, obj, that produces an iterator via 
+
+the syntax iter(obj).
+
+Generators
+
+• The most convenient technique for creating iterators in 
+
+Python is through the use of generators. 
+
+• A generator is implemented with a syntax that is very similar 
+
+to a function, but instead of returning values, a yield 
+statement is executed to indicate each element of the series. 
+
+• For example, a generator for the factors of n:
+
+Conditional Expressions
+
+• Python supports a conditional expression syntax that can 
+
+replace a simple control structure. 
+
+• The general syntax is an expression of the form:
+
+• This compound expression evaluates to expr1 if the 
+condition is true, and otherwise evaluates to expr2.
+
+• For example:
+
+• Or even
+
+Comprehension Syntax
+
+• A very common programming task is to produce 
+
+one series of values based upon the processing of 
+another series. 
+
+• Often, this task can be accomplished quite simply 
+
+in Python using what is known as a 
+comprehension syntax.
+
+• This is the same as
+
+Packing
+
+• If a series of comma-separated expressions are 
+
+given in a larger context, they will be treated as a 
+single tuple, even if no enclosing parentheses are 
+provided. 
+
+• For example, consider the assignment
+
+• This results in identifier, data, being assigned to 
+
+the tuple (2, 4, 6, 8). This behavior is called 
+automatic packing of a tuple.
+
+Unpacking
+
+• As a dual to the packing behavior, Python can 
+
+automatically unpack a sequence, allowing one to 
+assign a series of individual identifiers to the 
+elements of sequence. 
+
+• As an example, we can write
+
+• This has the effect of assigning a=7, b=8, c=9, and 
+
+d=10.
+
+Modules
+
+• Beyond the built-in definitions, the standard 
+Python distribution includes perhaps tens of 
+thousands of other values, functions, and classes 
+that are organized in additional libraries, known 
+as modules, that can be imported from within a 
+program.
+
+Existing Modules
+
+• Some useful existing modules include the following:
+
+
